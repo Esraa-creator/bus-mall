@@ -149,4 +149,3 @@ function randomNumber(min, max) {
 renderNewProducts();
 
 
-
