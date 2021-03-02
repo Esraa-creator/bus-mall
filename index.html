@@ -5,20 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class 11 Buss-Mall</title>
-  <link rel="stylesheet" href="./css/assets.css">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <section class="product">
     <header>
-      <img src="" alt="" class="logo">
-      <nav>
+      <img src="https://placehold.it/100x100/ddd" alt="" class="logo">      <nav>
         <a href="">Home</a>
         <a href="">About</a>
         <a href="">Contact</a>
       </nav>
-      <button type="results">View Results</button>
     </header>
 
     <main>
@@ -26,9 +25,14 @@
         <img src="" alt="" id="firstImage">
         <img src="" alt="" id="secondImage">
         <img src="" alt="" id="thirdImage">
-
       </section>
-      <canvas id="myChart" width="400" height="400"></canvas>
+
+      <canvas id="myChart"></canvas>
+      
+      <ul><li id="View-Results"></li>
+      </ul>
+
+      <button id="Results">View Results</button>
     </main>
 
     <footer>
@@ -36,8 +40,7 @@
     </footer>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-
-  <script src="./js/app.js"></script>
-  
+  <script src="js/app.js"></script>
 </body>
-</html> 
+
+</html>
