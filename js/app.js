@@ -1,78 +1,42 @@
-// 'use strict';
-// let goatArray = [
-//   'cruisin-goat',
-//   'float-your-goat',
-//   'goat-out-of-hand',
-//   'kissing-goat',
-//   'sassy-goat',
-//   'smilling-goat',
-//   'sweeter-goat'
-// ];
-
-// const imageSection = document.getElementById('imageSection');
-// const leftImage = document.getElementById('leftImage');
-// const rightImage = document.getElementById('rightImage');
-
-// function Goat(name){
-//   this.name = name;
-//   this.image =`./img/${name}.jpg`;
-//   Goat.all.push(this);
-// }
-
-// Goat.all =[];
-
-// for(let i = 0; i<goatArray.length; i++){
-//   new Goat (goatArray[i]);
-// }
-
-// leftImage.scr = Goat.all[0].image;
-
-// console.log(Goat.all);
-
-
-// // helper function
-// function randomNumber(min, max){
-//   return Math.floor(Math.random() * (max - min +1)) + min ;
-// }
-
 'use strict';
 
 let productsArray = [
-  'bag',
-  'banana',
-  'bathroom',
-  'boots',
-  'breakfast',
-  'bubblegum',
-  'chair',
-  'cthulhu',
-  'dog-duck',
-  'dragon',
-  'pen',
-  'pet-sweep',
-  'scissors',
-  'shark',
-  'sweep',
-  'tauntaun',
-  'unicorn',
-  'usb',
-  'water-can',
-  'wine-glass',
+  'bag.jpg',
+  'banana.jpg',
+  'bathroom.jpg',
+  'boots.jpg',
+  'breakfast.jpg',
+  'bubblegum.jpg',
+  'chair.jpg',
+  'cthulhu.jpg',
+  'dog-duck.jpg',
+  'dragon.jpg',
+  'pen.jpg',
+  'pet-sweep.jpg',
+  'scissors.jpg',
+  'shark.jpg',
+  'sweep.png',
+  'tauntaun.jpg',
+  'unicorn.jpg',
+  'usb.gif',
+  'water-can.jpg',
+  'wine-glass.jpg',
 ];
 
 const imageSection = document.getElementById('imageSectionProduct');
 const firstImage = document.getElementById('firstImage');
 const secondImage = document.getElementById('secondImage');
 const thirdImage = document.getElementById('thirdImage');
+const button = document.getElementById('Results');
 
 let firstImageIndex = 0;
 let secondImageIndex = 0;
 let thirdImageIndex = 0;
 const clickCounter = 25;
 
-function BussMall(name) {
+function BussMall(name, image) {
   this.name = name;
-  this.image = `./img/${name}.jpg`;
+  this.image = './img/' + image;
   this.clicks = 0;
   this.shown = 0;
   BussMall.all.push(this);
@@ -82,7 +46,11 @@ BussMall.all = [];
 BussMall.counter = 0;
 
 for (let i = 0; i < productsArray.length; i++) {
-  new BussMall(productsArray[i]);
+  new BussMall(getName(productsArray[i]), productsArray[i]);
+}
+
+function getName(fileName) {
+  return fileName.split('.').slice(0, -1).join('.');
 }
 
 function renderNewProducts() {
@@ -111,6 +79,7 @@ function renderNewProducts() {
   BussMall.all[thirdIndex].shown++;
 
 }
+
 
 function handelClick(event) {
 
@@ -141,11 +110,29 @@ imageSection.addEventListener('click', handelClick);
 
 console.log(BussMall.all);
 
+
+renderNewProducts();
+
+button.addEventListener('click', getResult);
+
+function getResult() {
+  const parentElement = document.getElementById('View-Results');
+  const articleElement = document.createElement('article');
+  parentElement.appendChild(articleElement);
+
+  for (let i = 0; i < BussMall.all.length; i++) {
+    const pElement = document.createElement('p');
+    articleElement.appendChild(pElement);
+    pElement.textContent = BussMall.all[i].name + 'had' + BussMall.all[i].clicks + 'votes, and was seen' + BussMall.all[i].shown + 'times';
+  }
+
+  button.removeEventListener('click', getResult);
+  button.textContent = 'Reset';
+  button.onclick = function handelClick (event) {
+    location.reload();
+  };
+}
 // GLOBAL RANDOM FUNCTION
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-renderNewProducts();
-
-
